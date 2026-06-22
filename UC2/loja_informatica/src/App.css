@@ -1,0 +1,203 @@
+/* ========================== 
+   RESET E CONFIGURAÇÕES BASE 
+========================== */ 
+ 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+} 
+ 
+html, 
+body { 
+  width: 100%; 
+  min-height: 100vh; 
+  overflow-x: hidden; 
+ 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+ 
+  background: linear-gradient( 
+    to bottom right, 
+    #ffe5b4, 
+    #ffd1dc 
+  ); 
+} 
+ 
+/* ========================== 
+REACT_JS_LOJA_INFORMÁTICA 
+   BARRA SUPERIOR 
+========================== */ 
+ 
+.top-bar { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+ 
+  width: 100%; 
+ 
+  background-color: #cc5803; 
+ 
+  padding: 20px 0; 
+ 
+  color: white; 
+  font-size: 1.8rem; 
+  font-weight: bold; 
+  text-align: center; 
+ 
+  z-index: 1000; 
+ 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+} 
+ 
+/* ========================== 
+   SUBTÍTULO 
+========================== */ 
+ 
+.subtitulo { 
+  margin-top: 100px; 
+  margin-bottom: 40px; 
+ 
+  text-align: center; 
+ 
+  font-size: 1.3rem; 
+  font-weight: 500; 
+ 
+  color: #4e342e; 
+ 
+  padding: 20px 30px; 
+ 
+  border: 2px solid #cc5803; 
+  border-radius: 12px; 
+ 
+  background-color: #fff6ec; 
+ 
+  box-shadow: 0 2px 8px rgba(204, 88, 3, 0.15); 
+ 
+  max-width: 800px; 
+ 
+  margin-left: auto; 
+  margin-right: auto; 
+} 
+ 
+/* ========================== 
+   CONTEÚDO PRINCIPAL 
+========================== */ 
+ 
+.content { 
+  padding-top: 20px; 
+  padding-left: 20px; 
+  padding-right: 20px; 
+  padding-bottom: 40px; 
+ 
+  min-height: 100vh; 
+ 
+  display: flex; 
+  justify-content: center; 
+} 
+ 
+/* ========================== 
+   CONTAINER DOS PRODUTOS 
+========================== */ 
+ 
+.produtos-container { 
+  display: flex; 
+ 
+  justify-content: center; 
+  align-items: stretch; 
+ 
+  gap: 30px; 
+ 
+  flex-wrap: wrap; 
+ 
+  width: 100%; 
+  max-width: 1200px; 
+} 
+ 
+/* ========================== 
+   CARD DOS PRODUTOS 
+========================== */ 
+ 
+.produto-card { 
+  width: 300px; 
+ 
+  background-color: #fff9f0; 
+ 
+  border: 1px solid #ffc48c; 
+
+  border-radius: 12px; 
+ 
+  padding: 20px; 
+ 
+  text-align: center; 
+ 
+  cursor: pointer; 
+ 
+  transition: 
+    transform 0.3s ease, 
+    box-shadow 0.3s ease; 
+ 
+  box-shadow: 0 2px 4px rgba(204, 88, 3, 0.1); 
+} 
+ 
+.produto-card:hover { 
+  transform: scale(1.03); 
+ 
+  box-shadow: 0 6px 12px rgba(204, 88, 3, 0.25); 
+} 
+ 
+/* ========================== 
+   IMAGENS 
+========================== */ 
+ 
+.produto-card img { 
+  width: 100%; 
+  height: 200px; 
+ 
+  object-fit: cover; 
+ 
+  border-radius: 8px; 
+ 
+  transition: transform 0.3s ease; 
+} 
+ 
+.produto-card:hover img { 
+  transform: scale(1.05); 
+} 
+ 
+/* ========================== 
+   TÍTULOS DOS PRODUTOS 
+========================== */ 
+ 
+.produto-card h2 { 
+  margin-top: 15px; 
+ 
+  color: #bf360c; 
+ 
+
+  font-size: 1.2rem; 
+  font-weight: bold; 
+} 
+ 
+/* ========================== 
+   RESPONSIVIDADE 
+========================== */ 
+ 
+@media (max-width: 768px) { 
+  .top-bar { 
+    font-size: 1.4rem; 
+    padding: 15px; 
+  } 
+ 
+  .subtitulo { 
+    font-size: 1.1rem; 
+    margin-top: 90px; 
+    margin-bottom: 30px; 
+    padding: 15px; 
+  } 
+ 
+  .produto-card { 
+    width: 90%; 
+    max-width: 350px; 
+  } 
+} 
+ 

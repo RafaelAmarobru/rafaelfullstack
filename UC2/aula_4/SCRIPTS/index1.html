@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitetura da Informação: Guia Completo</title>
+    
+    <meta name="description" content="Aprenda os fundamentos da Arquitetura da Informação para criar sites e aplicativos mais usáveis e organizados.">
+    <meta name="keywords" content="Arquitetura da Informação, usabilidade, navegação, organização de conteúdo">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #F3F4F6; /* Cinza claro */
+            color: #1E3A8A; /* Azul escuro */
+        }
+
+        header {
+            background-color: #1E3A8A; /* Azul escuro */
+            color: #FFFFFF; /* Branco */
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        nav {
+            background-color: #22D3EE; /* Ciano claro */
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #1E3A8A;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #6EE7B7; /* Verde-azulado */
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1E3A8A;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: #22D3EE;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background-color: #6EE7B7;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #1E3A8A;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            main {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Arquitetura da Informação: Guia Completo</h1>
+        <p>FULL STACK - UC2 - Prof Ivan Morales</p>
+        <p>Entenda como organizar conteúdo para melhorar a <span class="highlight">usabilidade</span> e <span class="highlight">navegação</span></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#o-que-e-ai">O que é AI?</a></li>
+            <li><a href="#hierarquia">Hierarquia</a></li>
+            <li><a href="#organizacao">Organização de Conteúdo</a></li>
+            <li><a href="#mapas-wireframes">Mapas e Wireframes</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="o-que-e-ai">
+            <h2>O que é Arquitetura da Informação?</h2>
+            <p>A <strong>Arquitetura da Informação (AI)</strong> é a prática de organizar, estruturar e rotular conteúdo em sites ou aplicativos para facilitar a <span class="highlight">usabilidade</span> e a localização de informações. O objetivo é criar experiências intuitivas, reduzindo a frustração e aumentando a satisfação do usuário.</p>
+            <h3>Por que é importante?</h3>
+            <p>Um site bem estruturado, como a Amazon, usa AI para garantir que os usuários encontrem produtos rapidamente. Já um site desorganizado pode levar à perda de visitantes. A AI é a base para uma boa <span class="highlight">navegação</span> e retenção.</p>
+        </section>
+
+        <section id="hierarquia">
+            <h2>Hierarquia da Informação</h2>
+            <p>A hierarquia da informação organiza o conteúdo em níveis lógicos, como menus principais, categorias e subcategorias. Isso guia o usuário de forma natural, desde informações gerais até detalhes específicos.</p>
+            <h3>Exemplo prático</h3>
+            <p>Em um site de e-commerce, a hierarquia pode ser: Home > Produtos > Eletrônicos > Smartphones. Evite menus sobrecarregados para não confundir o usuário.</p>
+        </section>
+
+        <section id="organizacao">
+            <h2>Organização de Conteúdo</h2>
+            <p>Organizar conteúdo de forma intuitiva é essencial. Técnicas como <strong>taxonomias</strong> (categorias fixas) e <strong>folksonomias</strong> (tags geradas por usuários) ajudam os usuários a encontrar o que precisam.</p>
+            <h3>Dicas para organização</h3>
+            <p>Use filtros como “Mais vendidos” ou “Por preço” e agrupe conteúdo com base em como os usuários pensam. Por exemplo, a Wikipedia usa categorias e links cruzados para facilitar a <span class="highlight">navegação</span>.</p>
+        </section>
+
+        <section id="mapas-wireframes">
+            <h2>Mapas de Site e Wireframes</h2>
+            <p>Mapas de site mostram a estrutura geral de um site, como um organograma. Wireframes são esboços de baixa fidelidade que definem o layout e as funcionalidades de uma página.</p>
+            <h3>Como criar?</h3>
+            <p>Use ferramentas como Draw.io para mapas de site ou Figma para wireframes. Por exemplo, um mapa de site para um app de delivery pode incluir: Home, Cardápio, Carrinho e Perfil.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Guia de Arquitetura da Informação. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

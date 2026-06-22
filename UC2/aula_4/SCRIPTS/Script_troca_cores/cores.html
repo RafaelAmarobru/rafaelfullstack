@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Cores Análogas Dinamicamente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Personalize as Cores do Seu Site</h1>
+        
+        <label for="bgColor">Cor de fundo:</label>
+        <input type="color" id="bgColor" value="#ffffff">
+        
+        <label for="faixa1Color">Cor da faixa 1:</label>
+        <input type="color" id="faixa1Color" value="#ff6347">
+        
+        <label for="faixa2Color">Cor da faixa 2:</label>
+        <input type="color" id="faixa2Color" value="#ff8c00">
+        
+        <label for="faixa3Color">Cor da faixa 3:</label>
+        <input type="color" id="faixa3Color" value="#ffd700">
+        
+        <button onclick="alterarCores()">Alterar Cores</button>
+    </div>
+
+    <div class="faixa" id="faixa1"></div>
+    <div class="faixa" id="faixa2"></div>
+    <div class="faixa" id="faixa3"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

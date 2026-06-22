@@ -1,0 +1,57 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+}
+
+.container {
+    margin: 20px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+label {
+    margin: 10px;
+    font-size: 1em;
+}
+
+input[type="color"] {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo das faixas */
+.faixa {
+    height: 50px;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+#faixa1 {
+    background-color: #ff6347;
+}
+
+#faixa2 {
+    background-color: #ff8c00;
+}
+
+#faixa3 {
+    background-color: #ffd700;
+}
+
