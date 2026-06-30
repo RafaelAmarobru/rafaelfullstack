@@ -2,9 +2,9 @@ import { Request, Response } from 'express'
 import {UsuariosServices} from "../../Services/Usuarios/UsuariosServices"
 class UsuariosControllers {
     async cadastrarUsuarios(req: Request, res: Response) {
-        const { nome, email, senha, telefone } = req.body
+        const { nome, email, senha, telefone, id_cargos } = req.body
         const EnviarDadosServices = new UsuariosServices()
-        const resposta = await EnviarDadosServices.cadastrarUsuarios({ nome, email, senha, telefone})
+        const resposta = await EnviarDadosServices.cadastrarUsuarios({ nome, email, senha, telefone, id_cargos})
 
         return res.json(resposta)
         
