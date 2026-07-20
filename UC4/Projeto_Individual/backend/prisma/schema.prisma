@@ -13,13 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-datasource db {
-  provider = "Projeto_Individual"
-  url      = emv ("DATABASE_URL")
-}
-
 model Usuarios {
   id String @id @default(uuid())
   nome String
   email String @unique
+  telefone String
+  data_nascimento String
+  endereco String
+  cidade String
+  estado String
+  complemento String
+  status Boolean @default(true)
+  senha String
+
+  data_criacao DateTime @default(now())
+  data_atualizacao DateTime @updatedAt
+
+  @@map("usuario")
 }
