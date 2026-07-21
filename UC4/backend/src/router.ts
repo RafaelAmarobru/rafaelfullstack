@@ -9,7 +9,9 @@ const router = Router()
 //Criação dos EndPoints
 //rota de Usuarios
 router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios)
+router.post('/VisualizarUsuariosUnicoViaPost', new UsuariosControllers().visualizarusuariounicoviapost)
 
+router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos
 router.post('/CadastrarCargos', new CargosControllers().cadastrarCargos)
 

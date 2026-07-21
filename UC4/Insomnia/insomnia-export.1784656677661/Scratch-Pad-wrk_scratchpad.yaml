@@ -1,0 +1,196 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1782931470973
+  modified: 1782931470973
+  description: ""
+collection:
+  - name: CRUD
+    meta:
+      id: fld_81fc04168b92438d93f5342f58770093
+      created: 1781632485001
+      modified: 1781632485001
+      sortKey: -1781632485001
+      description: ""
+    children:
+      - name: CEP
+        meta:
+          id: fld_d54a4eb41f454721a4b5bbc6263af40c
+          created: 1781632494424
+          modified: 1781632494424
+          sortKey: -1781632494424
+          description: ""
+        children:
+          - url: https://viacep.com.br/ws/17015040/json
+            name: Via CEP
+            meta:
+              id: req_14670be4a24446debd64fa1de8515705
+              created: 1780430914637
+              modified: 1784572928553
+              isPrivate: false
+              description: ""
+              sortKey: -1781632499611
+            method: GET
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Usuarios
+        meta:
+          id: fld_ea7f9f97c7a64565ae7682e943468dae
+          created: 1781632646667
+          modified: 1781632646667
+          sortKey: -1781632646667
+          description: ""
+        children:
+          - url: http://localhost:3333/CadastrarUsuarios
+            name: "Cadastrar Usuários "
+            meta:
+              id: req_e8dc879f9efe4665bc0552a1b4a841f2
+              created: 1781638339901
+              modified: 1784656618827
+              isPrivate: false
+              description: ""
+              sortKey: -1781638339901
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nome": "Luciano",
+                	"email": "luciano@teste.com.br",
+                	"senha": "123456",
+                	"telefone": "(11) 1111-1111",
+                	"id_cargos": "917b4735-3b45-44b2-9cfa-7fe820edb961"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3333/VisualizarDadosGeral
+            name: Visualizar Usuarios
+            meta:
+              id: req_4c1e9326c79e4719b9521a1f4098a9b1
+              created: 1784656069083
+              modified: 1784656166338
+              isPrivate: false
+              description: ""
+              sortKey: -1784656069083
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Cargos
+        meta:
+          id: fld_45910d0877d84f958d359a7663c012fe
+          created: 1782848470590
+          modified: 1782848470590
+          sortKey: -1782848470590
+          description: ""
+        children:
+          - url: http://localhost:3333/CadastrarCargos
+            name: Cadastrar Cargos
+            meta:
+              id: req_ad0affe3bba046218b08dd8430a32bcc
+              created: 1782848516755
+              modified: 1782936924722
+              isPrivate: false
+              description: ""
+              sortKey: -1782848516755
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"nome": "Vendedor"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Projeto_Individual
+    meta:
+      id: fld_59120aaea9dc4f9b8c85a8e1fad2a37c
+      created: 1782936731568
+      modified: 1782936816298
+      sortKey: -1782936731568
+      description: ""
+    children:
+      - url: http://localhost:3333/CadastrarUsuarios
+        name: cadastrarUsuarios
+        meta:
+          id: req_bc084315e4514c189ac09647e8178c51
+          created: 1782936835884
+          modified: 1784579530321
+          isPrivate: false
+          description: ""
+          sortKey: -1782936835884
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Rafael",
+            	"email": "rafael@flashfestabauru.com.br"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1782931514373
+    modified: 1782931514373
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1782931514342
+    modified: 1782931514342
+    isPrivate: false
