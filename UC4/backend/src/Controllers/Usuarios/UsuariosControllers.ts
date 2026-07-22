@@ -22,6 +22,13 @@ class UsuariosControllers {
     const resposta = await enviarDados.visualizarusuariounicoviapost(id)
     return res.json(resposta)
     }
+
+    async visualizarusuariosunicoviget(req: Request, res: Response){
+        const { id } = req.params
+        const enviarDados = new UsuariosServices()
+        const resposta = await enviarDados.visualizarusuariosunicoviget(id)
+        return res.json(resposta)
+    }
 }
 
 export { UsuariosControllers }
