@@ -31,3 +31,14 @@ model Usuarios {
 
   @@map("usuario")
 }
+
+model Funcionarios {
+  id String @id @default(uuid())
+  nome String
+  cpf String @unique
+  telefone String
+  cargo String
+  email String
+  status Boolean @default(true)
+
+}

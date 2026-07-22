@@ -16,7 +16,7 @@ class UsuariosServices {
     async cadastrarUsuarios ({nome, email, senha, telefone, endereco, data_nascimento, cidade, estado, complemento}: cadusuarios){
         const emailExiste = await prismaClient.usuarios.findFirst({
             where: {
-                email: email
+                telefone: telefone
             }
         })
 
@@ -37,6 +37,41 @@ class UsuariosServices {
             }
         })
         return({dados: "Dados salvos com sucesso"})
+    }
+
+    async visualizarDadosGeral(){
+        const resposta = await prismaClient.usuarios.findMany({
+            select: {
+                id: true, 
+                nome: true,
+                email: true,
+                telefone: true,
+                endereco: true,
+                data_nascimento: true,
+                cidade: true,
+                estado: true,
+                complemento: true
+            }
+        })
+        return resposta
+    }
+
+    async visualizarusuariounicoviapost(id: string){
+        const resposta = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                nome: true, 
+                email: true,
+                telefone: true,
+                status: true,
+                endereco: true,
+                estado: true
+            }
+        })
+        return resposta
     }
 }
 

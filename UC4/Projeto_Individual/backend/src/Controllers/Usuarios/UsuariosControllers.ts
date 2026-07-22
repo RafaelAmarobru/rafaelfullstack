@@ -21,7 +21,7 @@ class UsuariosControllers {
     }
     async visualizarDadosGeral(req: Request, res: Response){
         const enviarDados = new UsuariosServices()
-        const respota = await enviarDados.visualizarDadosGeral()
+        const resposta = await enviarDados.visualizarDadosGeral()
         return res.json(resposta)
     }
 
@@ -29,7 +29,7 @@ class UsuariosControllers {
          const { id } = req.body
          const enviarDados = new UsuariosServices()
          const resposta = await enviarDados.visualizarusuariounicoviapost(id)
-         return res.json(respota)
+         return res.json(resposta)
     }
    
 }
