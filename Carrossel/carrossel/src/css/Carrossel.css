@@ -136,5 +136,54 @@
 
     }
 
-    
+    .carrosselSlide img{
+        height: 350px;
+
+    }
+
+    .texto h2{
+        font-size: 28px;
+
+    }
+
+    .texto p{
+        font-size: 16px;
+
+    }
+
 }
+
+@media(max-width:600px){
+    .carrosselSlide img{
+        height: 250px;
+
+    }
+
+    .texto{
+        padding: 15px;
+
+    }
+
+    .texto h2{
+        font-size: 22px;
+    }
+
+    .texto p{
+        font-size: 15px;
+        line-height: 24;
+
+    }
+
+    .botao{
+        width: 100%;
+
+    }
+
+    .seta{
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+}
+
