@@ -1,0 +1,511 @@
+/**********************************************************************
+ *
+ * Guia.css
+ *
+ * Projeto: Guia do Carrossel
+ *
+ * Objetivo:
+ * Estilizar a documentação do projeto sem interferir
+ * no funcionamento do Carrossel.
+ *
+ **********************************************************************/
+
+/**********************************************************************
+ *
+ * ÁREA PRINCIPAL
+ *
+ **********************************************************************/
+
+.guia{
+
+    /*
+    Largura da documentação.
+
+    Para aumentar:
+
+    width:95%;
+
+    Para diminuir:
+
+    width:70%;
+
+    */
+
+    width:90%;
+
+    /*
+    Centraliza na página.
+    */
+
+    margin:50px auto;
+
+    /*
+    Cor de fundo.
+
+    Exemplos:
+
+    background:white;
+
+    background:#F8F9FA;
+
+    */
+
+    background:white;
+
+    /*
+    Espaço interno.
+    */
+
+    padding:30px;
+
+    /*
+    Borda.
+    */
+
+    border:1px solid #CCCCCC;
+
+    /*
+    Cantos arredondados.
+    */
+
+    border-radius:12px;
+
+    /*
+    Sombra.
+    */
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    /*
+    Alinhamento.
+    */
+
+    text-align:left;
+
+}
+
+/**********************************************************************
+ *
+ * TÍTULO PRINCIPAL
+ *
+ **********************************************************************/
+
+.guia h1{
+
+    font-size:36px;
+
+    color:#0D6EFD;
+
+    margin-bottom:20px;
+
+}
+
+/**********************************************************************
+ *
+ * TÍTULOS
+ *
+ **********************************************************************/
+
+.guia h2{
+
+    color:#333;
+
+    margin-top:40px;
+
+    margin-bottom:15px;
+
+    border-left:8px solid #0D6EFD;
+
+    padding-left:15px;
+
+}
+
+/**********************************************************************
+ *
+ * PARÁGRAFOS
+ *
+ **********************************************************************/
+
+.guia p{
+
+    font-size:17px;
+
+    line-height:30px;
+
+    color:#555;
+
+}
+
+/**********************************************************************
+ *
+ * LINHA
+ *
+ **********************************************************************/
+
+.guia hr{
+
+    margin:40px 0;
+
+    border:none;
+
+    border-top:1px solid #DDDDDD;
+
+}
+
+/**********************************************************************
+ *
+ * TABELA
+ *
+ **********************************************************************/
+
+.tabelaGuia{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+/**********************************************************************
+ *
+ * CABEÇALHO
+ *
+ **********************************************************************/
+
+.tabelaGuia th{
+
+    background:#0D6EFD;
+
+    color:white;
+
+    padding:15px;
+
+    text-align:left;
+
+}
+
+/**********************************************************************
+ *
+ * CÉLULAS
+ *
+ **********************************************************************/
+
+.tabelaGuia td{
+
+    padding:12px;
+
+    border:1px solid #DDDDDD;
+
+}
+
+/**********************************************************************
+ *
+ * EFEITO ZEBRADO
+ *
+ **********************************************************************/
+
+.tabelaGuia tbody tr:nth-child(even){
+
+    background:#F5F5F5;
+
+}
+
+/**********************************************************************
+ *
+ * PASSAR O MOUSE
+ *
+ **********************************************************************/
+
+.tabelaGuia tbody tr:hover{
+
+    background:#E8F1FF;
+
+}
+
+/**********************************************************************
+ *
+ * LISTAS
+ *
+ **********************************************************************/
+
+.guia ul{
+
+    padding-left:30px;
+
+    line-height:35px;
+
+}
+
+.guia ol{
+
+    padding-left:30px;
+
+    line-height:35px;
+
+}
+
+/**********************************************************************
+ *
+ * ITENS
+ *
+ **********************************************************************/
+
+.guia li{
+
+    margin-bottom:8px;
+
+}
+
+/**********************************************************************
+ *
+ * CAIXAS DE DESTAQUE
+ *
+ **********************************************************************/
+
+.destaque{
+
+    background:#FFF9DB;
+
+    border-left:6px solid orange;
+
+    padding:15px;
+
+    margin:25px 0;
+
+}
+
+.aviso{
+
+    background:#FFECEC;
+
+    border-left:6px solid red;
+
+    padding:15px;
+
+    margin:25px 0;
+
+}
+
+.sucesso{
+
+    background:#E9FBEA;
+
+    border-left:6px solid green;
+
+    padding:15px;
+
+    margin:25px 0;
+
+}
+
+.informacao{
+
+    background:#EEF6FF;
+
+    border-left:6px solid #0D6EFD;
+
+    padding:15px;
+
+    margin:25px 0;
+
+}
+
+/**********************************************************************
+ *
+ * BLOCO DE CÓDIGO
+ *
+ **********************************************************************/
+
+.guia pre{
+
+    background:#272822;
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:8px;
+
+    overflow:auto;
+
+}
+
+.guia code{
+
+    font-size:15px;
+
+}
+
+/**********************************************************************
+ *
+ * BOTÕES
+ *
+ **********************************************************************/
+
+.guia button{
+
+    padding:12px 20px;
+
+    background:#0D6EFD;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.guia button:hover{
+
+    background:#084298;
+
+}
+
+/**********************************************************************
+ *
+ * LINKS
+ *
+ **********************************************************************/
+
+.guia a{
+
+    color:#0D6EFD;
+
+    text-decoration:none;
+
+}
+
+.guia a:hover{
+
+    text-decoration:underline;
+
+}
+
+/**********************************************************************
+ *
+ * RESPONSIVIDADE
+ *
+ **********************************************************************/
+
+@media(max-width:900px){
+
+    .guia{
+
+        width:95%;
+
+        padding:20px;
+
+    }
+
+    .guia h1{
+
+        font-size:30px;
+
+    }
+
+    .guia h2{
+
+        font-size:22px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .guia{
+
+        width:98%;
+
+        padding:15px;
+
+    }
+
+    .guia h1{
+
+        font-size:26px;
+
+    }
+
+    .guia h2{
+
+        font-size:20px;
+
+    }
+
+    .guia p{
+
+        font-size:15px;
+
+    }
+
+    .tabelaGuia{
+
+        font-size:13px;
+
+    }
+
+    .tabelaGuia th,
+    .tabelaGuia td{
+
+        padding:8px;
+
+    }
+
+}
+
+/**********************************************************************
+ *
+ * EXERCÍCIOS
+ *
+ **********************************************************************
+
+1) Troque a cor do título.
+
+2) Faça a tabela verde.
+
+3) Altere a sombra.
+
+4) Coloque bordas arredondadas.
+
+5) Faça a tabela ocupar 80%.
+
+6) Troque a cor ao passar o mouse.
+
+7) Coloque outra fonte.
+
+8) Crie uma nova classe de destaque.
+
+9) Faça os botões vermelhos.
+
+10) Adicione um efeito de animação.
+
+**********************************************************************/
+
+/**********************************************************************
+ *
+ * RESUMO DAS PRINCIPAIS PROPRIEDADES CSS
+ *
+ * width             largura
+ * height            altura
+ * margin            espaço externo
+ * padding           espaço interno
+ * background        cor de fundo
+ * color             cor do texto
+ * border            borda
+ * border-radius     cantos arredondados
+ * box-shadow        sombra
+ * font-size         tamanho da fonte
+ * line-height       altura da linha
+ * text-align        alinhamento
+ * transition        animação
+ * display           tipo de layout
+ *
+ **********************************************************************/

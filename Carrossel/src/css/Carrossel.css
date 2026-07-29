@@ -1,0 +1,554 @@
+/**********************************************************************
+ *
+ * Carrossel.css
+ *
+ * Projeto: Carrossel em React
+ *
+ * Objetivo:
+ * Demonstrar estilização utilizando CSS.
+ *
+ * O arquivo está totalmente comentado para facilitar o aprendizado.
+ *
+ **********************************************************************/
+
+/**********************************************************************
+ *
+ * CARROSSEL
+ *
+ * Área principal do componente.
+ *
+ **********************************************************************/
+
+.carrossel{
+
+    /*
+        Largura máxima.
+
+        Para aumentar:
+        width:1400px;
+
+        Para diminuir:
+        width:900px;
+    */
+
+    width:1200px;
+
+    /*
+        Nunca ultrapassar a largura da tela.
+    */
+
+    max-width:100%;
+
+    /*
+        Centraliza horizontalmente.
+    */
+
+    margin:40px auto;
+
+    /*
+        Cor de fundo.
+
+        Exemplos:
+
+        background:white;
+
+        background:#F5F5F5;
+
+        background:#222;
+    */
+
+    background:white;
+
+    /*
+        Bordas.
+
+        Para retirar:
+
+        border:none;
+    */
+
+    border:1px solid #DDDDDD;
+
+    /*
+        Cantos arredondados.
+    */
+
+    border-radius:12px;
+
+    /*
+        Sombra.
+
+        Quanto maiores os números,
+        maior será a sombra.
+    */
+
+    box-shadow:0px 0px 15px rgba(0,0,0,.20);
+
+    /*
+        Espaço interno.
+    */
+
+    padding:20px;
+
+    /*
+        Esconde tudo que ultrapassar
+        o componente.
+    */
+
+    overflow:hidden;
+
+}
+
+/**********************************************************************
+ *
+ * ÁREA DA IMAGEM
+ *
+ **********************************************************************/
+
+.carrosselImagem{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/**********************************************************************
+ *
+ * CONTAINER DOS SLIDES
+ *
+ **********************************************************************/
+
+.carrosselSlides{
+
+    display:flex;
+
+    /*
+        Velocidade da animação.
+
+        Mais rápido:
+
+        transition:.3s;
+
+        Mais lento:
+
+        transition:1s;
+    */
+
+    transition:transform .7s ease;
+
+}
+
+/**********************************************************************
+ *
+ * CADA SLIDE
+ *
+ **********************************************************************/
+
+.carrosselSlide{
+
+    /*
+        Cada slide ocupa
+        exatamente 100% da largura.
+    */
+
+    min-width:100%;
+
+}
+
+/**********************************************************************
+ *
+ * IMAGEM
+ *
+ **********************************************************************/
+
+.carrosselSlide img{
+
+    /*
+        Largura.
+
+        100% ocupa toda a tela.
+
+        Pode utilizar:
+
+        width:80%;
+    */
+
+    width:100%;
+
+    /*
+        Altura.
+
+        Para aumentar:
+
+        height:600px;
+
+        Para diminuir:
+
+        height:300px;
+    */
+
+    height:500px;
+
+    /*
+        Ajusta a imagem.
+
+        cover
+
+        contain
+
+        fill
+    */
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+/**********************************************************************
+ *
+ * ÁREA DOS TEXTOS
+ *
+ **********************************************************************/
+
+.texto{
+
+    padding:25px;
+
+    text-align:center;
+
+}
+
+/**********************************************************************
+ *
+ * TÍTULO
+ *
+ **********************************************************************/
+
+.texto h2{
+
+    font-size:34px;
+
+    color:#333;
+
+    margin-bottom:15px;
+
+}
+
+/**********************************************************************
+ *
+ * PARÁGRAFO
+ *
+ **********************************************************************/
+
+.texto p{
+
+    font-size:18px;
+
+    line-height:30px;
+
+    color:#666;
+
+    margin-bottom:25px;
+
+}
+
+/**********************************************************************
+ *
+ * BOTÃO
+ *
+ **********************************************************************/
+
+.botao{
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0D6EFD;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+/*
+Mudança ao passar o mouse.
+*/
+
+.botao:hover{
+
+    background:#084298;
+
+    transform:scale(1.05);
+
+}
+
+/**********************************************************************
+ *
+ * SETAS
+ *
+ **********************************************************************/
+
+.seta{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.45);
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+/*
+Seta esquerda.
+*/
+
+.esquerda{
+
+    left:20px;
+
+}
+
+/*
+Seta direita.
+*/
+
+.direita{
+
+    right:20px;
+
+}
+
+/*
+Quando passar o mouse.
+*/
+
+.seta:hover{
+
+    background:#0D6EFD;
+
+}
+
+/**********************************************************************
+ *
+ * INDICADORES
+ *
+ **********************************************************************/
+
+.indicadores{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:25px;
+
+    gap:12px;
+
+}
+
+/**********************************************************************
+ *
+ * CÍRCULOS
+ *
+ **********************************************************************/
+
+.indicador{
+
+    width:16px;
+
+    height:16px;
+
+    background:#CCCCCC;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+/**********************************************************************
+ *
+ * INDICADOR ATIVO
+ *
+ **********************************************************************/
+
+.ativo{
+
+    background:#0D6EFD;
+
+    transform:scale(1.25);
+
+}
+
+/**********************************************************************
+ *
+ * RESPONSIVIDADE
+ *
+ **********************************************************************/
+
+@media(max-width:900px){
+
+    .carrossel{
+
+        width:95%;
+
+    }
+
+    .carrosselSlide img{
+
+        height:350px;
+
+    }
+
+    .texto h2{
+
+        font-size:28px;
+
+    }
+
+    .texto p{
+
+        font-size:16px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .carrosselSlide img{
+
+        height:250px;
+
+    }
+
+    .texto{
+
+        padding:15px;
+
+    }
+
+    .texto h2{
+
+        font-size:22px;
+
+    }
+
+    .texto p{
+
+        font-size:15px;
+
+        line-height:24px;
+
+    }
+
+    .botao{
+
+        width:100%;
+
+    }
+
+    .seta{
+
+        width:45px;
+
+        height:45px;
+
+        font-size:22px;
+
+    }
+
+}
+
+/**********************************************************************
+ *
+ * EXERCÍCIOS
+ *
+ **********************************************************************
+
+1) Altere a cor do botão.
+
+2) Troque a cor das setas.
+
+3) Faça o botão ficar verde.
+
+4) Coloque sombra nas imagens.
+
+5) Arredonde mais os cantos.
+
+6) Aumente a altura das imagens.
+
+7) Coloque fundo cinza.
+
+8) Faça o botão aumentar ao passar o mouse.
+
+9) Faça os indicadores ficarem quadrados.
+
+10) Altere a velocidade da animação.
+
+11) Coloque borda azul.
+
+12) Faça o carrossel ocupar toda a largura.
+
+13) Troque a fonte.
+
+14) Faça as imagens ficarem menores.
+
+15) Altere o tamanho do título.
+
+16) Crie um efeito diferente para o botão.
+
+**********************************************************************/
+
+/**********************************************************************
+ *
+ * RESUMO
+ *
+ * width          largura
+ * height         altura
+ * background     cor de fundo
+ * color          cor do texto
+ * border         borda
+ * border-radius  cantos arredondados
+ * box-shadow     sombra
+ * padding        espaço interno
+ * margin         espaço externo
+ * font-size      tamanho da fonte
+ * object-fit     ajuste da imagem
+ * transition     velocidade da animação
+ * transform      movimentação e escala
+ * display:flex   layout flexível
+ * justify-content alinhamento horizontal
+ * align-items     alinhamento vertical
+ *
+ **********************************************************************/
