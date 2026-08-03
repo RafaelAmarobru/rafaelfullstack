@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Tarefas Full Stack</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 8px; background: #f4f4f4; margin-bottom: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h2>Minhas Tarefas</h2>
+    
+    <!-- Formulário para adicionar nova tarefa -->
+    <input type="text" id="inputTarefa" placeholder="Digite uma nova tarefa...">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+
+    <!-- Lista onde as tarefas aparecem -->
+    <ul id="listaTarefas"></ul>
+
+    <script>
+        const API_URL = "http://localhost:3000/api/tarefas";
+
+        // Função para buscar tarefas do Back-end e renderizar na tela
+        async function carregarTarefas() {
+            const resposta = await fetch(API_URL);
+            const tarefas = await resposta.json();
+            
+            const lista = document.getElementById("listaTarefas");
+            lista.innerHTML = ""; // Limpa a lista antes de atualizar
+            
+            tarefas.forEach(tarefa => {
+                const item = document.createElement("li");
+                item.textContent = tarefa.titulo;
+                lista.appendChild(item);
+            });
+        }
+
+        // Função para enviar uma nova tarefa para o Back-end
+        async function adicionarTarefa() {
+            const input = document.getElementById("inputTarefa");
+            if (!input.value) return;
+
+            await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ titulo: input.value })
+            });
+
+            input.value = ""; // Limpa o campo de texto
+            carregarTarefas(); // Atualiza a tela com a nova tarefa
+        }
+
+        // Carrega as tarefas assim que a página abre
+        carregarTarefas();
+    </script>
+</body>
+</html>
