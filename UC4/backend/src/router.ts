@@ -11,6 +11,7 @@ const router = Router()
 router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios)
 router.post('/VisualizarUsuariosUnicoViaPost', new UsuariosControllers().visualizarusuariounicoviapost)
 router.get('/VisualizarUsuariosUnicoViaGet/:id', new UsuariosControllers().visualizarusuariosunicoviget)
+router.put('/AlterarUsuarios', new UsuariosControllers().alterarUsuarios)
 
 router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos

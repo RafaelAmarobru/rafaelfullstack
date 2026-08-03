@@ -29,6 +29,19 @@ class UsuariosControllers {
         const resposta = await enviarDados.visualizarusuariosunicoviget(id)
         return res.json(resposta)
     }
+
+    async alterarUsuarios(req: Request, res: Response){
+        const { id, nome, email, telefone, id_cargos } = req.body
+        const enviarDados = new UsuariosServices()
+        const resposta = await enviarDados.alterarUsuarios({
+            id, 
+            nome, 
+            email,
+            telefone, 
+            id_cargos
+        })
+        return res.json(resposta)
+    }
 }
 
 export { UsuariosControllers }
