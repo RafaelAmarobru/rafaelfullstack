@@ -13,6 +13,7 @@ interface AltUsuarios{
     nome: string
     email: string
     telefone: string
+    status: boolean
     id_cargos: string
 }
 
@@ -80,13 +81,13 @@ class UsuariosServices {
                 nome: true,
                 email: true,
                 telefone: true,
-                status: true
+                status: true,
             }
         })
         return resposta
     }
 
-    async alterarUsuarios({ id, nome, email, telefone, id_cargos}: AltUsuarios){
+    async alterarUsuarios({ id, nome, email, telefone, status, id_cargos}: AltUsuarios){
             await prismaClient.usuarios.update({
                 where: {
                     id: id
@@ -95,11 +96,20 @@ class UsuariosServices {
                     nome: nome,
                     email: email,
                     telefone: telefone,
+                    status: status, 
                     id_cargos: id_cargos
                 }
             })
             return ({dados: 'Dados Alterados com Sucesso'})
     }
+   async apagarUsuarios( id : string){
+       await prismaClient.usuarios.delete({
+        where: {
+            id: id
+        }
+       })
+       return ({dados: 'Registro Apagado com Sucesso'})
+   }
 }
 
 export {UsuariosServices}
