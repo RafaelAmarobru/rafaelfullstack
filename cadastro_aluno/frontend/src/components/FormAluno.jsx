@@ -1,36 +1,51 @@
-import { useState } from "react";
-import api from "../services/api";
-
-function FormAluno(){
-
-    const [cpf, setCpf]=useState("");
-    const [nome, setNome]=useState("");
-    const [email, setEmail]=useState("");
-    const [celular, setCelular]=useState("");
-
-    const [resultado,setResultado]=useState("");
-
-    async function inserir(){
-        try{
-            await axios.post(api,{
-                cpf,
+import { useState } from "react"; 
+import api from "../services/api"; 
+ 
+function FormAluno() { 
+ 
+    const [cpf, setCpf] = useState(""); 
+    const [nome, setNome] = useState(""); 
+    const [email, setEmail] = useState(""); 
+    const [celular, setCelular] = useState(""); 
+ 
+    const [resultado, setResultado] = useState(""); 
+ 
+    //---------------------------------------- 
+    // Inserir 
+    //---------------------------------------- 
+ 
+    async function inserir() { 
+ 
+        try { 
+ 
+            await axios.post(api, { 
+                cpf, 
                 nome, 
-                email,
-                celular
-            });
+                email, 
+                celular 
+            }); 
+ 
+            alert("Aluno cadastrado com sucesso!"); 
+ 
+        } catch (erro) { 
+ 
+            alert("Erro ao cadastrar aluno."); 
+ 
+        } 
+ 
+    } 
+ 
+    //---------------------------------------- 
+    // Consultar 
+    //---------------------------------------- 
+ 
+    async function consultar() { 
+ 
+        try { 
+ 
+            const resposta = await axios.get(`${api}/${cpf}`);
 
-            alert("Aluno cadastrado com sucesso");
-        }catch(erro){
-            alert("Erro ao cadastrar aluno.");
-
-        }
-    }
-
-    async function consultar() {
-        try {
-            const resposta = await axios.get('${api}/${cpf}');
-
-             if (resposta.data.length === 0) { 
+              if (resposta.data.length === 0) { 
  
                 setResultado("Aluno não encontrado."); 
  
@@ -74,7 +89,8 @@ Celular: ${aluno.celular}`
  
             setResultado(""); 
  
-        } catch { 
+        } catch {
+
               alert("Erro ao excluir."); 
  
         } 
@@ -122,6 +138,7 @@ Celular: ${aluno.celular}`
                 <button onClick={inserir}> 
                     Inserir 
                 </button> 
+
 <button onClick={consultar}> 
                     Consultar 
                 </button> 
@@ -144,4 +161,4 @@ Celular: ${aluno.celular}`
  
 } 
  
-export default FormAluno; 
+export default FormAluno;
