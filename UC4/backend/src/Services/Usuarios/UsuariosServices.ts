@@ -88,6 +88,16 @@ class UsuariosServices {
     }
 
     async alterarUsuarios({ id, nome, email, telefone, status, id_cargos}: AltUsuarios){
+
+        const idExiste = await prismaClient.usuarios.findFirst({
+            where: { 
+                id: id
+            }
+        })
+
+        if(!idExiste){
+            throw new Error ('Registro não Encontrado')
+        }
             await prismaClient.usuarios.update({
                 where: {
                     id: id
@@ -103,6 +113,17 @@ class UsuariosServices {
             return ({dados: 'Dados Alterados com Sucesso'})
     }
    async apagarUsuarios( id : string){
+
+    const idExiste = await prismaClient.usuarios.findFirst({
+        where: {
+            id: id
+        }
+    })
+
+    if(!idExiste){
+        throw new Error ('Registro não encontrado')
+    }
+
        await prismaClient.usuarios.delete({
         where: {
             id: id

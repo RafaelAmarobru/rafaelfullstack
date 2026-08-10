@@ -31,6 +31,13 @@ class UsuariosControllers {
          const resposta = await enviarDados.visualizarusuariounicoviapost(id)
          return res.json(resposta)
     }
+
+    async visualizarusuariosunicoviaget(req: Request, res: Response){
+        const { id } = req.params
+        const enviarDados = new UsuariosServices()
+        const resposta = await enviarDados.visualizarusuariounicoviaget(id)
+        return res.json(resposta)
+    }
    
 }
 

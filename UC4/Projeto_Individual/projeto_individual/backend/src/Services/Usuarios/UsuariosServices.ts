@@ -73,6 +73,24 @@ class UsuariosServices {
         })
         return resposta
     }
+
+    async visualizarusuariounicoviaget(id: string){
+        const resposta = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                bine: true,
+                email: true,
+                telefone: true,
+                status: true,
+                endereco: true,
+                estado: true
+            }
+        })
+        return resposta
+    }
 }
 
 export {UsuariosServices}
