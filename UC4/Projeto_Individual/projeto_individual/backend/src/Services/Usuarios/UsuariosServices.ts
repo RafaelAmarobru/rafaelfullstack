@@ -12,11 +12,24 @@ interface cadusuarios {
     complemento: string;
 }
 
+interface AltUsuarios{
+    id: string
+    nome: string
+    email: string
+    senha: string
+    telefone: string
+    endereco: string
+    data_nascimento: string
+    cidade: string
+    estado: string
+    complemento: string
+}
+
 class UsuariosServices { 
     async cadastrarUsuarios ({nome, email, senha, telefone, endereco, data_nascimento, cidade, estado, complemento}: cadusuarios){
         const emailExiste = await prismaClient.usuarios.findFirst({
             where: {
-                telefone: telefone
+                email: email
             }
         })
 
@@ -81,16 +94,65 @@ class UsuariosServices {
             },
             select: {
                 id: true,
-                bine: true,
+                nome: true,
                 email: true,
                 telefone: true,
                 status: true,
                 endereco: true,
-                estado: true
+                estado: true,
+                complemento: true
             }
         })
         return resposta
     }
+
+    async alterarUsuarios({ id, nome, email, telefone, status, endereco, estado, complemento}: AltUsuarios){
+
+        const idExiste = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if(!idExiste){
+            throw new Error ('Registro não Encontrado')
+        }
+        await prismaClient.usuarios.update({
+            where: {
+                id: id
+            },
+            data: {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                status: status,
+                endereco: endereco,
+                estado: estado,
+                complemento: complemento
+            }
+        })
+        return ({dados: 'Dados Alterados com Sucesso'})
+    }
+
+    async apagarUsuarios( id: string){
+        const idExiste = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            }
+    })
+
+    if(!idExiste){
+        throw new Error ('Registro não encontrado')
+    }
+
+    await prismaClient.usuarios.delete({
+        where: {
+            id: id
+        }
+    })
+
+    returm ({dados: 'Registro Apagado com Sucesso'})
+}
 }
 
 export {UsuariosServices}
