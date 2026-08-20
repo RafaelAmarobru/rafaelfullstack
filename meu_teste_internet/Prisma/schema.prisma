@@ -1,0 +1,15 @@
+datasource db {
+  provider = "mysql"
+}
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ImageRecord {
+  id        Int      @id @default(autoincrement())
+  title     String
+  url       String   // Armazena a string do caminho (/uploads/nome-da-imagem.webp)
+  createdAt DateTime @default(now())
+}

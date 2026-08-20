@@ -3,6 +3,7 @@ import { Router } from 'express'
 //Importação do Controladores
 import { UsuariosControllers } from './Controllers/Usuarios/UsuariosControllers'
 import { CargosControllers } from './Controllers/Cargos/CargosControllers'
+import { ProdutosControllers } from './Controllers/Produtos/ProdutosControllers'
 
 const router = Router()
 
@@ -17,5 +18,5 @@ router.delete('/ApagarUsuarios', new UsuariosControllers().apagarUsuarios)
 router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos
 router.post('/CadastrarCargos', new CargosControllers().cadastrarCargos)
-
+router.post('/CadastrarProdutos', new ProdutosControllers().cadastrarProdutos)
 export default router
