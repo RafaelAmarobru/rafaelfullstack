@@ -13,7 +13,10 @@ interface cadUsuarios {
 
 }
 
-class UsuariosServices {
+export class UsuariosServices {
+    visualizarDadosGeral() {
+        throw new Error('Method not implemented.');
+    }
     async cadastrarUsuarios({nome, email, senha, telefone, endereco, cidade, estado, data_nascimento, complemento}:cadUsuarios){
         const emailExiste = await prismaClient.usuarios.findFirst({
             where: {
