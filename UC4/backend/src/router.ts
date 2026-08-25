@@ -6,6 +6,7 @@ import uploadConfig from './Config/multer'
 import { UsuariosControllers } from './Controllers/Usuarios/UsuariosControllers'
 import { CargosControllers } from './Controllers/Cargos/CargosControllers'
 import { ProdutosControllers } from './Controllers/Produtos/ProdutosControllers'
+import { LoginUsuariosControllers } from './Controllers/LoginUsuario/LoginUsuariosControllers'
 
 const router = Router()
 const upload = multer(uploadConfig.upload('./tmp'))
@@ -17,6 +18,7 @@ router.post('/VisualizarUsuariosUnicoViaPost', new UsuariosControllers().visuali
 router.get('/VisualizarUsuariosUnicoViaGet/:id', new UsuariosControllers().visualizarusuariosunicoviget)
 router.put('/AlterarUsuarios', new UsuariosControllers().alterarUsuarios)
 router.delete('/ApagarUsuarios', new UsuariosControllers().apagarUsuarios)
+router.post('/LoginUsuarios', new LoginUsuariosControllers().logarUsuario)
 
 router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos
