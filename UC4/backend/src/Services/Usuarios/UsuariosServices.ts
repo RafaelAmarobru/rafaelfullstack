@@ -1,4 +1,5 @@
 import prismaClient from "../../Prisma/PrismaClient";
+import { hash } from 'bcryptjs'
 
 interface cadUsuarios {
     nome: string;
@@ -29,11 +30,13 @@ class UsuariosServices {
         if (emailExiste){
             throw new Error ('E-mail já existe')
         }
+
+        const senhaHash = await hash(senha, 8)
         await prismaClient.usuarios.create({
             data: {
                 nome: nome,
                 email: email,
-                senha: senha,
+                senha: senhaHash,
                 telefone: telefone,
                 id_cargos: id_cargos
             }

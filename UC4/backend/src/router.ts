@@ -21,7 +21,7 @@ router.delete('/ApagarUsuarios', new UsuariosControllers().apagarUsuarios)
 router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos
 router.post('/CadastrarCargos', new CargosControllers().cadastrarCargos)
-router.post('/CadastrarProdutos', upload.single('file'), new ProdutosControllers().cadastrarProdutos)
+router.post('/CadastrarProdutos', upload.single('file'), new ProdutosControllers().CadastrarProdutos)
 router.get('/VisualizarProdutosGeral', new ProdutosControllers().VisualizarProdutosGeral)
 
 export default router
