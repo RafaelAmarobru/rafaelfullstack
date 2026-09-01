@@ -1,4 +1,5 @@
 import prismaClient from "../../Prisma/PrismaClient";
+import { hash } from "bcryptjs";
 
 interface cadUsuarios {
     nome: string;
@@ -14,6 +15,7 @@ interface cadUsuarios {
 }
 
 export class UsuariosServices {
+
     visualizarDadosGeral() {
         throw new Error('Method not implemented.');
     }
@@ -43,5 +45,25 @@ export class UsuariosServices {
         })
 
         return ({dados: "Dados salvos com sucesso"})
+    }
+
+    async visualizarusuariounicoviapost(id: string){
+        const resposta = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                telefone: true,
+                endreco: true,
+                cidade: true,
+                estado: true,
+                data_nascimento: true,
+                complemento: true
+            }
+        })
+        return resposta
     }
 }

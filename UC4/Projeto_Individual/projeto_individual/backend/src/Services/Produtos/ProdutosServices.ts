@@ -1,5 +1,7 @@
 import prismaClient from "../../Prisma/PrismaClient";
 
+const prisma = prismaClient as any;
+
 interface CadastrarProdutos {
     nome: string
     preco: string
@@ -9,7 +11,7 @@ interface CadastrarProdutos {
 
 class ProdutosServices {
     async CadastrarProdutos({ nome, preco, quantidade, banner }: CadastrarProdutos) {
-        await prismaClient.produtos.create({
+        await prisma.produtos.create({
             data: {
                 nome: nome,
                 preco: preco,
@@ -21,7 +23,7 @@ class ProdutosServices {
     }
 
     async VisualizarProdutosGeral() {
-        const resposta = await prismaClient.produtos.findMany({
+        const resposta = await prisma.produtos.findMany({
             select: {
                 id: true,
                 nome: true,
