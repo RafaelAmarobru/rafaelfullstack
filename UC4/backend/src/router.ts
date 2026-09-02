@@ -10,20 +10,21 @@ import { LoginUsuariosControllers } from './Controllers/LoginUsuario/LoginUsuari
 
 const router = Router()
 const upload = multer(uploadConfig.upload('./tmp'))
+import { estaAutenticado } from './Middleware/estaAutenticado'
 
 //Criação dos EndPoints
 //rota de Usuarios
 router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios)
-router.post('/VisualizarUsuariosUnicoViaPost', new UsuariosControllers().visualizarusuariounicoviapost)
-router.get('/VisualizarUsuariosUnicoViaGet/:id', new UsuariosControllers().visualizarusuariosunicoviget)
-router.put('/AlterarUsuarios', new UsuariosControllers().alterarUsuarios)
-router.delete('/ApagarUsuarios', new UsuariosControllers().apagarUsuarios)
+router.post('/VisualizarUsuariosUnicoViaPost', estaAutenticado, new UsuariosControllers().visualizarusuariounicoviapost)
+router.get('/VisualizarUsuariosUnicoViaGet/:id', estaAutenticado,  new UsuariosControllers().visualizarusuariosunicoviget)
+router.put('/AlterarUsuarios', estaAutenticado, new UsuariosControllers().alterarUsuarios)
+router.delete('/ApagarUsuarios', estaAutenticado, new UsuariosControllers().apagarUsuarios)
 router.post('/LoginUsuarios', new LoginUsuariosControllers().logarUsuario)
 
-router.get('/VisualizarDadosGeral', new UsuariosControllers().visualizarDadosGeral)
+router.get('/VisualizarDadosGeral', estaAutenticado, new UsuariosControllers().visualizarDadosGeral)
 //rota de cargos
-router.post('/CadastrarCargos', new CargosControllers().cadastrarCargos)
-router.post('/CadastrarProdutos', upload.single('file'), new ProdutosControllers().CadastrarProdutos)
-router.get('/VisualizarProdutosGeral', new ProdutosControllers().VisualizarProdutosGeral)
+router.post('/CadastrarCargos', estaAutenticado, new CargosControllers().cadastrarCargos)
+router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().CadastrarProdutos)
+router.get('/VisualizarProdutosGeral', estaAutenticado, new ProdutosControllers().VisualizarProdutosGeral)
 
 export default router
