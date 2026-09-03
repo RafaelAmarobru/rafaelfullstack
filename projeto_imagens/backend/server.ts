@@ -1,28 +1,28 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-const express = require("express");
-const cors = require("cors");
-const multer = require("multer");
-const mysql = require("mysql2");
-
-const fs = require("fs");
+import express from "express";
+import cors from "cors";
+import multer from "multer";
+import mysql from "mysql2";
+import fs from "fs";
+import path from "path";
 
 const app = express();
-const PORTA = Number(ProcessingInstruction.env.PORT)||3001;
+const PORTA = Number(process.env.PORT) || 3001;
 
 app.use(cors());
 app.use(express.json());
 
 const conexao = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT)||3306,
-    user: process.env.DB_PASSWORDZ||"",
-    database: process.env.DB_NAME,
-    waitForCOnnections: true,
-    connectionLimit: 10
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 3306,
+  user: process.env.DB_USER || "",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10
 });
-
-const path = require("path");
 
 const pastaUploads = path.join(__dirname, "uploads");
 fs.mkdirSync(pastaUploads, { recursive: true });

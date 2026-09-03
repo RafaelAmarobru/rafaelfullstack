@@ -57,7 +57,7 @@ export class UsuariosServices {
                 nome: true,
                 email: true,
                 telefone: true,
-                endreco: true,
+                endereco: true,
                 cidade: true,
                 estado: true,
                 data_nascimento: true,
@@ -66,4 +66,69 @@ export class UsuariosServices {
         })
         return resposta
     }
+
+    async visualizarusuariosunicoviaget(id: string){
+        const resposta = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            },
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                telefone: true,
+                endereco: true,
+                cidade: true,
+                estado: true,
+                data_nascimento: true,
+                complemento: true,
+                status: true
+            }
+        })
+        return resposta
+    }
+
+    async alterarUsuarios({id, nome, email, telefone, status}: AltUsuarios){
+        const idExiste = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if(!idExiste){
+            throw new Error ('Registro não Encontrado')
+        }
+        await prismaClient.usuarios.update({
+            where: {
+                id: id
+            },
+            data: {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                status: status
+            }
+        })
+        return ({dados: 'Dados Alterados com Sucesso'})
+    }
+    async apagarUsuarios( id: string){
+        const idExiste = await prismaClient.usuarios.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if(!idExiste){
+            throw new Error ('Registro não Encontrado')
+        }
+
+        await prismaClient.usuarios.delete({
+            where: {
+                id: id
+            }
+        })
+        return ({dados: 'Registro Apagado com Sucesso'})
+    }
 }
+
+// exported above as 'export class UsuariosServices'

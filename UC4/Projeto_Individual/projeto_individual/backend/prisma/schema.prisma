@@ -14,7 +14,13 @@ datasource db {
 }
 
 model Usuarios {
-  id String @id @default(uuid())
+  // ... seus outros campos existentes (id, nome, etc.)
+
+  // Adicione este campo para fechar a relação com Cargos:
+  cargo_id Int
+  cargo    Cargos @relation(fields: [cargo_id], references: [id])
+
+  id Int @id @default(autoincrement())
   nome String
   email String @unique
   telefone String
@@ -33,7 +39,7 @@ model Usuarios {
 }
 
 model Funcionarios {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   nome String
   cpf String @unique
   telefone String
@@ -41,4 +47,16 @@ model Funcionarios {
   email String
   status Boolean @default(true)
 
+}
+
+model Cargos {
+  id      Int     @id @default(autoincrement())
+  nome    String
+  funcao  String? // <-- Adicione a interrogação para tornar opcional
+  // ...
+  usuarios Usuarios[]
+  data_criacao DateTime @default(now())
+  data_atualizacao DateTime @updatedAt
+
+  @@map("cargos")
 }
