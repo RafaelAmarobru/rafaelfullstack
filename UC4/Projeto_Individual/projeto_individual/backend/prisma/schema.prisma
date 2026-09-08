@@ -32,6 +32,9 @@ model Usuarios {
   status Boolean @default(true)
   senha String
 
+  cargos Cargos @relation(fields: [id_cargos], references: [id])
+  id_cargos String
+
   data_criacao DateTime @default(now())
   data_atualizacao DateTime @updatedAt
 

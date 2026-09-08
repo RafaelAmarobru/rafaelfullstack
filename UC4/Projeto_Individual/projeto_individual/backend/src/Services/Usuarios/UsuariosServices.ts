@@ -10,8 +10,22 @@ interface cadUsuarios {
     cidade: string;
     estado: string;
     data_nascimento: string;
-    complemento: string
+    complemento: string;
+    id_cargos: number
+}
 
+interface AltUsuarios{
+    id: number;
+    nome: string;
+    email: string;
+    senha: string;
+    telefone: string;
+    endereco: string;
+    cidade: string;
+    estado: string;
+    data_nascimento: string;
+    complemento: string;
+    id_cargos: number
 }
 
 export class UsuariosServices {
@@ -19,7 +33,7 @@ export class UsuariosServices {
     visualizarDadosGeral() {
         throw new Error('Method not implemented.');
     }
-    async cadastrarUsuarios({nome, email, senha, telefone, endereco, cidade, estado, data_nascimento, complemento}:cadUsuarios){
+    async cadastrarUsuarios({nome, email, senha, telefone, endereco, cidade, estado, data_nascimento, complemento, id_cargos}:cadUsuarios){
         const emailExiste = await prismaClient.usuarios.findFirst({
             where: {
                 email: email
@@ -40,14 +54,15 @@ export class UsuariosServices {
                 cidade: cidade,
                 estado: estado,
                 data_nascimento: data_nascimento,
-                complemento: complemento
+                complemento: complemento,
+                id_cargos: id_cargos
             }
         })
 
         return ({dados: "Dados salvos com sucesso"})
     }
 
-    async visualizarusuariounicoviapost(id: string){
+    async visualizarusuariounicoviapost(id: number){
         const resposta = await prismaClient.usuarios.findFirst({
             where: {
                 id: id
@@ -67,7 +82,7 @@ export class UsuariosServices {
         return resposta
     }
 
-    async visualizarusuariosunicoviaget(id: string){
+    async visualizarusuariosunicoviaget(id: number){
         const resposta = await prismaClient.usuarios.findFirst({
             where: {
                 id: id
@@ -88,7 +103,7 @@ export class UsuariosServices {
         return resposta
     }
 
-    async alterarUsuarios({id, nome, email, telefone, status}: AltUsuarios){
+    async alterarUsuarios({id, nome, email, telefone, status, id_cargos}: AltUsuarios){
         const idExiste = await prismaClient.usuarios.findFirst({
             where: {
                 id: id
@@ -111,7 +126,7 @@ export class UsuariosServices {
         })
         return ({dados: 'Dados Alterados com Sucesso'})
     }
-    async apagarUsuarios( id: string){
+    async apagarUsuarios( id: number){
         const idExiste = await prismaClient.usuarios.findFirst({
             where: {
                 id: id
