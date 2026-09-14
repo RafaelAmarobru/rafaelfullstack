@@ -5,10 +5,15 @@ class LoginUsuariosControllers {
     async logarUsuario(req: Request, res: Response){
         const { email, senha } = req.body
                const enviarDados = new LogarUsuariosServices()
-               const resposta = await enviarDados.logarUsuarios({
+               try {
+                const resposta = await enviarDados.logarUsuarios({
                 email, senha
                })
                return res.json(resposta)
+               } catch (error: any) {
+                return res.status(401).json({ error: error.message})
+                
+               }
     }
 
 }
