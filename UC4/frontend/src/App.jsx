@@ -12,6 +12,7 @@ export default function App(){
         email,
         senha
       })
+      localStorage.setItem('@token', JSON.stringify(resposta.data.token ))
       console.log(resposta)
 
     } catch (err) {
@@ -25,12 +26,46 @@ export default function App(){
       }
     }
   }
+
+  async function consultarUsuarios(){
+    try {
+      const itoken = localStorage.getItem('@token')
+      const token = JSON.parse(itoken)
+      const resposta = await apiLocal.get('/VisualizarDadosGeral', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(resposta
+      )
+    } catch (err) {
+      
+    }
+  }
+
+  async function consultarProdutos(){
+    try {
+      const
+    } catch (err) {
+      
+    }
+  }
+
+
+  function limparLocalStorage(){
+    localStorage.clear()
+  }
   return(
     <>
     <div>
       <h1>Front com Api</h1>
+      < input type='email' name='email' alt='email' Submit='Email'></input>
+      <br/>
 
       <button onClick={logarUsuario}>Logar</button>
+      <button onClick={consultarUsuarios}>Consultar</button>
+      <button onClick={limparLocalStorage}>Sair do Sistema</button>
+    
       </div>
       </>
   )
