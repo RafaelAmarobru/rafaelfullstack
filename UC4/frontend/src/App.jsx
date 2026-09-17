@@ -1,72 +1,82 @@
 import './App.css'
 import apiLocal from './Api/apilocal'
 
-export default function App(){
- 
-  const email = 'rafael@teste.com.br'
-  const senha = '123456'
+export default function App() {
+  
+  async function cadastrarCargos() {
+    const nome = 'Caixa'
+    try {
+      const itoken = localStorage.getItem('@token')
+      const token = JSON.parse(itoken)
 
-  async function logarUsuario(){
+      const resposta = await apiLocal.post(
+        '/CadastrarCargos', 
+        { nome }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      console.log(resposta)
+    } catch (err) {
+      console.log('Erro ao cadastrar cargo:', err.response?.data || err.message)
+    }
+  } 
+
+  async function logarUsuario() {
+    const email = 'rafael@teste.com.br'
+    const senha = '123456'
+
     try {
       const resposta = await apiLocal.post('/LoginUsuarios', {
         email,
         senha
       })
-      localStorage.setItem('@token', JSON.stringify(resposta.data.token ))
+      localStorage.setItem('@token', JSON.stringify(resposta.data.token))
       console.log(resposta)
-
     } catch (err) {
       if (err.response && err.response.data) {
         const mensagemDoBackEnd = err.response.data.error 
-
         console.log('Mensagem real do backend', mensagemDoBackEnd)
-      } else{
+      } else {
         console.log('Erro de conexão', err.message)
-        console.log('Não foi possivel conectar ao servidor.')
+        console.log('Não foi possível conectar ao servidor.')
       }
     }
   }
 
-  async function consultarUsuarios(){
+  async function consultarUsuarios() {
     try {
       const itoken = localStorage.getItem('@token')
       const token = JSON.parse(itoken)
+
       const resposta = await apiLocal.get('/VisualizarDadosGeral', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(resposta
-      )
+      console.log(resposta)
     } catch (err) {
-      
+      console.log('Erro ao consultar usuários:', err.response?.data || err.message)
     }
   }
 
-  async function consultarProdutos(){
-    try {
-      const
-    } catch (err) {
-      
-    }
-  }
-
-
-  function limparLocalStorage(){
+  function limparLocalStorage() {
     localStorage.clear()
   }
-  return(
-    <>
+
+  return (
     <div>
       <h1>Front com Api</h1>
-      < input type='email' name='email' alt='email' Submit='Email'></input>
-      <br/>
+      <form action="">
+          <input type="text" placeholder='Digite o Email' />
+          <input type="password" placeholder='Digite a Senha' />        </form>
 
       <button onClick={logarUsuario}>Logar</button>
       <button onClick={consultarUsuarios}>Consultar</button>
       <button onClick={limparLocalStorage}>Sair do Sistema</button>
-    
-      </div>
-      </>
+      <button onClick={cadastrarCargos}>Cadastrar Cargos</button>
+    </div>
   )
 }
