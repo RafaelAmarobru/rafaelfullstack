@@ -1,10 +1,18 @@
+import { useState, useEffect } from 'react'
 import './App.css'
 import apiLocal from './Api/apilocal'
 
 export default function App() {
-  
+  const [nome, setNome] = useState('')
+  const [cargos, setCargos] = useState([''])
+  useEffect(() => {
+    async function visualizarCargosGeral(){
+      const resposta = await apiLocal('/VisulizarCargosGeral')
+      console.log(resposta)
+    }
+    visualizarCargosGeral()
+  }, [])
   async function cadastrarCargos() {
-    const nome = 'Caixa'
     try {
       const itoken = localStorage.getItem('@token')
       const token = JSON.parse(itoken)
@@ -69,14 +77,28 @@ export default function App() {
   return (
     <div>
       <h1>Front com Api</h1>
-      <form action="">
-          <input type="text" placeholder='Digite o Email' />
-          <input type="password" placeholder='Digite a Senha' />        </form>
+      <form onSubmit={cadastrarCargos}>
+        <input type='text' placeholder='Digite o Cargo' value={nome} onChange={(e) => setNome(e.target.value)}></input>
+        <button type='submit'>Cadastrar Cargos</button>
+      </form>
+      <form>
+        <select>
+          <option value="">Selecione o Cargo</option>
+          {cargos.map((item) => {
+            return(
+              <>
+              <option value="">{item.nome}</option>
+              </>
+            )
+          })}
+        </select>
 
+        <button type='submit'>Cadastrar Usuarios</button>
+      </form>
       <button onClick={logarUsuario}>Logar</button>
       <button onClick={consultarUsuarios}>Consultar</button>
       <button onClick={limparLocalStorage}>Sair do Sistema</button>
-      <button onClick={cadastrarCargos}>Cadastrar Cargos</button>
+      
     </div>
   )
 }

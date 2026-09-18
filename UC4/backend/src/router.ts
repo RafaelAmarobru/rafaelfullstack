@@ -26,5 +26,6 @@ router.get('/VisualizarDadosGeral', estaAutenticado, new UsuariosControllers().v
 router.post('/CadastrarCargos', estaAutenticado, new CargosControllers().cadastrarCargos)
 router.post('/CadastrarProdutos', estaAutenticado, upload.single('file'), new ProdutosControllers().CadastrarProdutos)
 router.get('/VisualizarProdutosGeral', estaAutenticado, new ProdutosControllers().VisualizarProdutosGeral)
+router.get('/Visu')
 
 export default router
