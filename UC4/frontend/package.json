@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "front_1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "axios": "^1.20.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sass": "^1.101.3"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

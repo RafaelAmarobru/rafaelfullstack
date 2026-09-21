@@ -1,41 +1,49 @@
 import { useState, useEffect } from 'react'
-import './App.css'
-import apiLocal from './Api/apilocal'
+import './App.scss'
+import apiLocal from './Api/apiLocal'
 
 export default function App() {
-  const [nome, setNome] = useState('')
+
+  const [nomeCargos, setNomeCargos] = useState('')
   const [cargos, setCargos] = useState([''])
+  const [id_cargos, setIdCargos] = useState('')
+
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const [telefone, setTelefone] = useState('')
+
+  const [usuarios, setUsuarios] = useState([''])
   useEffect(() => {
-    async function visualizarCargosGeral(){
-      const resposta = await apiLocal('/VisulizarCargosGeral')
-      console.log(resposta)
+    async function visualizarCargosGeral() {
+      const resposta = await apiLocal.get('/VisualizarCargosGeral')
+      setCargos(resposta.data)
     }
     visualizarCargosGeral()
   }, [])
+
   async function cadastrarCargos() {
+    const nome = nomeCargos
     try {
       const itoken = localStorage.getItem('@token')
       const token = JSON.parse(itoken)
-
-      const resposta = await apiLocal.post(
-        '/CadastrarCargos', 
-        { nome }, 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+      const resposta = await apiLocal.post('/CadastrarCargos', {
+        nome
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      )
+      })
       console.log(resposta)
     } catch (err) {
-      console.log('Erro ao cadastrar cargo:', err.response?.data || err.message)
-    }
-  } 
 
-  async function logarUsuario() {
+    }
+  }
+
+  async function logarUsuarios() {
+    //Cosntantes de Login
     const email = 'rafael@teste.com.br'
     const senha = '123456'
-
     try {
       const resposta = await apiLocal.post('/LoginUsuarios', {
         email,
@@ -44,11 +52,16 @@ export default function App() {
       localStorage.setItem('@token', JSON.stringify(resposta.data.token))
       console.log(resposta)
     } catch (err) {
+      // 1. O error do Express fica guardado dentro de err.resposta.data
       if (err.response && err.response.data) {
-        const mensagemDoBackEnd = err.response.data.error 
-        console.log('Mensagem real do backend', mensagemDoBackEnd)
+
+        // Captura o objeto { error: 'Senha Incorretos' } que enviamos no Controller
+        const mensagemDoBackend = err.response.data.error
+
+        console.log('Mensagem real do backend:', mensagemDoBackend)
       } else {
-        console.log('Erro de conexão', err.message)
+        // Caso o backend esteja totalmente caído ou sem internet
+        console.log('Erro de conexão:', err.message)
         console.log('Não foi possível conectar ao servidor.')
       }
     }
@@ -58,15 +71,14 @@ export default function App() {
     try {
       const itoken = localStorage.getItem('@token')
       const token = JSON.parse(itoken)
-
       const resposta = await apiLocal.get('/VisualizarDadosGeral', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(resposta)
+      setUsuarios(resposta.data)
     } catch (err) {
-      console.log('Erro ao consultar usuários:', err.response?.data || err.message)
+
     }
   }
 
@@ -74,31 +86,86 @@ export default function App() {
     localStorage.clear()
   }
 
-  return (
-    <div>
-      <h1>Front com Api</h1>
-      <form onSubmit={cadastrarCargos}>
-        <input type='text' placeholder='Digite o Cargo' value={nome} onChange={(e) => setNome(e.target.value)}></input>
-        <button type='submit'>Cadastrar Cargos</button>
-      </form>
-      <form>
-        <select>
-          <option value="">Selecione o Cargo</option>
-          {cargos.map((item) => {
-            return(
-              <>
-              <option value="">{item.nome}</option>
-              </>
-            )
-          })}
-        </select>
-
-        <button type='submit'>Cadastrar Usuarios</button>
-      </form>
-      <button onClick={logarUsuario}>Logar</button>
-      <button onClick={consultarUsuarios}>Consultar</button>
-      <button onClick={limparLocalStorage}>Sair do Sistema</button>
+  async function cadastrarUsuarios(e){
+    e.preventDefault()
+    try {
+      const resposta = await apiLocal.post('/CadastrarUsuarios', {
+        nome, 
+        email,
+        senha,
+        telefone,
+        id_cargos
+      })
+    } catch (err) {
       
-    </div>
+    }
+  }
+
+  return (
+    <>
+      <div>
+        <h1>Front com API</h1>
+        <form onSubmit={cadastrarCargos}>
+          <input
+            type="text"
+            placeholder='Digite o Cargo'
+            value={nomeCargos}
+            onChange={(e) => setNomeCargos(e.target.value)}
+          />
+          <button type='submit'>Cadastrar Cargos</button>
+        </form>
+
+        <form onSubmit={cadastrarUsuarios}>
+          <select 
+          value={id_cargos}
+          onChange={(e) => setIdCargos(e.target.value)}
+          >
+            <option value="">Selecione o Cargo</option>
+            {cargos.map((item) => {
+              return(
+                <>
+                <option value={item.id}>{item.nome}</option>
+                </>
+              )
+            })}
+          </select>
+          <input type='text' placeholder='Digite o Nome' value={nome} onChange={(e) => setNome(e.target.value)}/>
+          <input type='email' placeholder='Digite o Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input type='password' placeholder='Digite a Senha' value={senha} onChange={(e) => setSenha(e.target.value)}/>
+          <input type='tel' placeholder='Digite o Telefone' value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+          <button type='submit'>Cadastrar Usuários</button>
+        </form>
+
+
+        <button onClick={logarUsuarios}>Logar Usuários</button>
+        <button onClick={consultarUsuarios}>Consultar Usuarios</button>
+        <button>Consultar Produtos</button>
+        <button onClick={limparLocalStorage} >Sair Sistema</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome:</th>
+              <th>Email:</th>
+              <th>Telefone:</th>
+              <th>Ação:</th>
+            </tr>
+            {usuarios.map((item) => {
+              return (
+                <>
+                  <tr>
+                    <td>{item.nome}</td>
+                    <td>{item.email}</td>
+                    <td>{item.telefone}</td>
+                    <td>Editar</td>
+                  </tr>
+                </>
+              )
+            })}
+          </thead>
+        </table>
+      </div>
+
+    </>
   )
 }

@@ -1,29 +1,28 @@
-import { Request, Response, NextFunction } from "express";
-import { verify } from "jsonwebtoken";
+import { Request, Response, NextFunction } from 'express'
+import { verify } from 'jsonwebtoken'
 
-interface Payload{
+interface Payload {
     sub: string
 }
 
-export function estaAutenticado (
+export function estaAutenticado(
     req: Request,
     res: Response,
     next: NextFunction
-) {
+){
     const autoToken = req.headers.authorization
-    if (!autoToken){
-        return res.json({ dados: 'Token Inexistente'})
+    if(!autoToken){
+         return res.json({ dados: 'Token Inexistente' })
     }
-
     const [, token] = autoToken.split(' ')
     try{
         const { sub } = verify(
-            token, 
+            token,
             process.env.JWT_SECRETO
         ) as Payload
         req.usuarioId = sub
         return next()
     } catch(err){
-        return res.json({ dados: 'Token Invalido' })
+        return res.json({ dados: 'Token Inválido' })
     }
 }

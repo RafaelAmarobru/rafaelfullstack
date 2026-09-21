@@ -1,15 +1,15 @@
-import { Request, Response } from "express"
-import { ProdutosServices } from "../../Services/Produtos/ProdutosServices"
+import { Request, Response } from 'express'
+import { ProdutosServices } from '../../Services/Produtos/ProdutosServices'
 
 class ProdutosControllers {
-    async CadastrarProdutos(req: Request, res: Response) {
-        const { nome, preco, quantidade, banner } = req.body
-        if(!req.file) {
-            throw new Error('Erro! Envio Não Efetuado!')
-        }else {
+    async cadastrarProdutos(req: Request, res: Response){
+        const { nome, preco, quantidade} = req.body
+        if(!req.file){
+            throw new Error('Arquivo com Problemas')
+        }else{
             const {originalname, filename: banner} = req.file
             const enviarDados = new ProdutosServices()
-            const resposta = await enviarDados.CadastrarProdutos({
+            const resposta = await enviarDados.cadastrarProdutos({
                 nome,
                 preco,
                 quantidade,
@@ -19,12 +19,12 @@ class ProdutosControllers {
         }
     }
 
-    async VisualizarProdutosGeral(req: Request, res: Response) {
+    async visualizarProdutosGeral(req: Request, res: Response){
         const enviarDados = new ProdutosServices()
-        const resposta = await enviarDados.VisualizarProdutosGeral()
+        const resposta = await enviarDados.visualizarProdutosGeral()
         return res.json(resposta)
     }
+    
 }
-
 
 export { ProdutosControllers }
