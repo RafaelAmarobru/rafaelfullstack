@@ -16,9 +16,6 @@ datasource db {
 model Usuarios {
   // ... seus outros campos existentes (id, nome, etc.)
 
-  // Adicione este campo para fechar a relação com Cargos:
-  cargo_id Int
-  cargo    Cargos @relation(fields: [cargo_id], references: [id])
 
   id Int @id @default(autoincrement())
   nome String
@@ -32,8 +29,8 @@ model Usuarios {
   status Boolean @default(true)
   senha String
 
-  cargos Cargos @relation(fields: [id_cargos], references: [id])
-  id_cargos String
+  cargos Cargos @relation(fields: [cargo_id], references: [id])
+  cargos_id Int
 
   data_criacao DateTime @default(now())
   data_atualizacao DateTime @updatedAt

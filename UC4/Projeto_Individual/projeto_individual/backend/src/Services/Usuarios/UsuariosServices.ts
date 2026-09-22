@@ -1,7 +1,7 @@
 import prismaClient from "../../Prisma/PrismaClient";
 import { hash } from "bcryptjs";
 
-interface cadUsuarios {
+interface CadUsuarios {
     nome: string;
     email: string;
     senha: string;
@@ -11,21 +11,17 @@ interface cadUsuarios {
     estado: string;
     data_nascimento: string;
     complemento: string;
-    id_cargos: number
+    id_cargos: number;
 }
 
-interface AltUsuarios{
+// Interface ajustada: apenas os campos que realmente são atualizados
+interface AltUsuarios {
     id: number;
     nome: string;
     email: string;
-    senha: string;
     telefone: string;
-    endereco: string;
-    cidade: string;
-    estado: string;
-    data_nascimento: string;
-    complemento: string;
-    id_cargos: number
+    status: boolean;
+    id_cargos: number;
 }
 
 export class UsuariosServices {
@@ -33,40 +29,39 @@ export class UsuariosServices {
     visualizarDadosGeral() {
         throw new Error('Method not implemented.');
     }
-    async cadastrarUsuarios({nome, email, senha, telefone, endereco, cidade, estado, data_nascimento, complemento, id_cargos}:cadUsuarios){
-        const emailExiste = await prismaClient.usuarios.findFirst({
-            where: {
-                email: email
-            }
-        })
 
-        if (emailExiste){
-            throw new Error ('E-mail já existe')
+    async cadastrarUsuarios({ nome, email, senha, telefone, endereco, cidade, estado, data_nascimento, complemento, id_cargos }: CadUsuarios) {
+        const emailExiste = await prismaClient.usuarios.findFirst({
+            where: { email }
+        });
+
+        if (emailExiste) {
+            throw new Error('E-mail já existe');
         }
+
+        const senhaHash = await hash(senha, 8);
 
         await prismaClient.usuarios.create({
             data: {
-                nome: nome,
-                email: email,
-                senha: senha,
-                telefone: telefone,
-                endereco: endereco, 
-                cidade: cidade,
-                estado: estado,
-                data_nascimento: data_nascimento,
-                complemento: complemento,
-                id_cargos: id_cargos
+                nome,
+                email,
+                senha: senhaHash,
+                telefone,
+                endereco,
+                cidade,
+                estado,
+                data_nascimento,
+                complemento,
+                cargo_id: Number(id_cargos),
             }
-        })
+        });
 
-        return ({dados: "Dados salvos com sucesso"})
+        return { dados: "Dados salvos com sucesso" };
     }
 
-    async visualizarusuariounicoviapost(id: number){
-        const resposta = await prismaClient.usuarios.findFirst({
-            where: {
-                id: id
-            },
+    async visualizarusuariounicoviapost(id: number) {
+        const resposta = await prismaClient.usuarios.findUnique({
+            where: { id },
             select: {
                 id: true,
                 nome: true,
@@ -78,15 +73,13 @@ export class UsuariosServices {
                 data_nascimento: true,
                 complemento: true
             }
-        })
-        return resposta
+        });
+        return resposta;
     }
 
-    async visualizarusuariosunicoviaget(id: number){
-        const resposta = await prismaClient.usuarios.findFirst({
-            where: {
-                id: id
-            },
+    async visualizarusuariosunicoviaget(id: number) {
+        const resposta = await prismaClient.usuarios.findUnique({
+            where: { id },
             select: {
                 id: true,
                 nome: true,
@@ -99,51 +92,46 @@ export class UsuariosServices {
                 complemento: true,
                 status: true
             }
-        })
-        return resposta
+        });
+        return resposta;
     }
 
-    async alterarUsuarios({id, nome, email, telefone, status, id_cargos}: AltUsuarios){
-        const idExiste = await prismaClient.usuarios.findFirst({
-            where: {
-                id: id
-            }
-        })
+    async alterarUsuarios({ id, nome, email, telefone, status, id_cargos }: AltUsuarios) {
+        const idExiste = await prismaClient.usuarios.findUnique({
+            where: { id }
+        });
 
-        if(!idExiste){
-            throw new Error ('Registro não Encontrado')
+        if (!idExiste) {
+            throw new Error('Registro não Encontrado');
         }
-        await prismaClient.usuarios.update({
-            where: {
-                id: id
-            },
-            data: {
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                status: status
-            }
-        })
-        return ({dados: 'Dados Alterados com Sucesso'})
-    }
-    async apagarUsuarios( id: number){
-        const idExiste = await prismaClient.usuarios.findFirst({
-            where: {
-                id: id
-            }
-        })
 
-        if(!idExiste){
-            throw new Error ('Registro não Encontrado')
+        await prismaClient.usuarios.update({
+            where: { id },
+            data: {
+                nome,
+                email,
+                telefone,
+                status,
+                cargo_id: Number(id_cargos),
+            }
+        });
+
+        return { dados: 'Dados Alterados com Sucesso' };
+    }
+
+    async apagarUsuarios(id: number) {
+        const idExiste = await prismaClient.usuarios.findUnique({
+            where: { id }
+        });
+
+        if (!idExiste) {
+            throw new Error('Registro não Encontrado');
         }
 
         await prismaClient.usuarios.delete({
-            where: {
-                id: id
-            }
-        })
-        return ({dados: 'Registro Apagado com Sucesso'})
+            where: { id }
+        });
+
+        return { dados: 'Registro Apagado com Sucesso' };
     }
 }
-
-// exported above as 'export class UsuariosServices'
