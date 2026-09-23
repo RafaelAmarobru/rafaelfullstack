@@ -11,7 +11,7 @@ interface CadUsuarios {
     estado: string;
     data_nascimento: string;
     complemento: string;
-    id_cargos: number;
+    id_cargos: string;
 }
 
 // Interface ajustada: apenas os campos que realmente são atualizados
